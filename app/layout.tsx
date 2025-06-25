@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+"use client";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Head from 'next/head';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,31 +14,33 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-export const metadata: Metadata = {
-  title: "GharBari - Find Your Dream Space",
-  description: "The best place to find houses, apartments, offices, and shops for rent across Bangladesh.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
-  themeColor: "#2C7865",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "GharBari",
-  },
-  formatDetection: {
-    telephone: false,
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isGuest, setIsGuest] = useState(false);
+  useEffect(() => {
+    // Check guest mode from localStorage
+    setIsGuest(localStorage.getItem('guest') === 'true');
+    // If not on login or signup, and not authenticated, redirect
+    if (
+      pathname !== '/login' &&
+      pathname !== '/signup' &&
+      !localStorage.getItem('authenticated') &&
+      !localStorage.getItem('guest')
+    ) {
+      router.replace('/login');
+    }
+    // If guest, block /list-property
+    if (pathname === '/list-property' && localStorage.getItem('guest') === 'true') {
+      router.replace('/explore');
+    }
+  }, [pathname, router]);
   return (
     <html lang="en" className="scroll-smooth">
-      <Head>
-        <link rel="icon" href="/logo.png" />
-      </Head>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <meta name="theme-color" content="#2C7865" />

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Mock data for listings - in a real app, this would come from a database
 const listings = [
@@ -97,22 +98,20 @@ const Header = () => {
                 <div className="container mx-auto px-4 sm:px-6 py-4 bg-black rounded-full shadow-2xl ring-1 ring-white/10">
                     <div className="flex justify-between items-center">
                         <a href="/" className="flex items-center space-x-2">
-                            <img src="/logo.png" alt="GharBari logo" className="navbar-logo w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+                            <img src="/logo-main.png" alt="GharBari logo" className="navbar-logo w-8 h-8 sm:w-10 sm:h-10 object-contain" />
                             <span className="text-xl sm:text-2xl font-bold text-white font-serif">GharBari</span>
                         </a>
                         
                         {/* Desktop Navigation */}
                         <nav className="hidden lg:flex items-center gap-10 xl:gap-14">
-                            <a href="/" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Home</a>
-                            <a href="/explore" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Explore</a>
-                            <a href="/list-property" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">List Property</a>
-                            <a href="/about" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">About</a>
-                            <a href="#" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Contact</a>
+                            <Link href="/" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Home</Link>
+                            <Link href="/explore" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Explore</Link>
+                            <Link href="/list-property" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">List Property</Link>
+                            <Link href="/about" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">About</Link>
+                            <Link href="/contact" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Contact</Link>
                         </nav>
                         
                         <div className="flex items-center space-x-3 sm:space-x-4">
-                            <a href="/login" className="navbar-link hidden sm:block text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 font-medium text-sm lg:text-base">Login</a>
-                            
                             {/* Mobile Menu Button */}
                             <button
                                 onClick={toggleMobileMenu}
@@ -144,19 +143,13 @@ const Header = () => {
                         
                         <nav className="flex-1 p-6">
                             <div className="space-y-6">
-                                <a href="/" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Home</a>
-                                <a href="/explore" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Explore</a>
-                                <a href="/list-property" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">List Property</a>
-                                <a href="/about" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">About</a>
-                                <a href="#" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Contact</a>
+                                <Link href="/" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Home</Link>
+                                <Link href="/explore" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Explore</Link>
+                                <Link href="/list-property" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">List Property</Link>
+                                <Link href="/about" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">About</Link>
+                                <Link href="/contact" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Contact</Link>
                             </div>
                         </nav>
-                        
-                        <div className="p-6 border-t border-white/20">
-                            <a href="/login" onClick={closeMobileMenu} className="btn btn-primary w-full justify-center">
-                                Login
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -166,7 +159,7 @@ const Header = () => {
 
 const HeroSection = () => {
     const [searchValue, setSearchValue] = useState("");
-    return (
+  return (
         <section className="relative pt-24 sm:pt-32 lg:pt-48 pb-16 sm:pb-20 lg:pb-32 bg-gradient-to-b from-[#F4FDF8] to-[#FFFFFF] overflow-hidden">
             <div className="container mx-auto max-w-7xl grid lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 sm:px-6">
                 <div className="text-center lg:text-left">
@@ -201,21 +194,21 @@ const HeroSection = () => {
                         />
                     </div>
                     <div className="will-change-[transform,box-shadow] absolute bottom-0 right-10 w-56 lg:w-64 h-72 lg:h-80 bg-white rounded-2xl shadow-xl overflow-hidden transform-gpu rotate-6 transition-[transform,box-shadow] duration-[3000ms] ease-in-out hover:-translate-y-4 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)]">
-                        <Image
+        <Image
                             src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=100&w=4000&auto=format&fit=crop&ar=4:5" 
                             alt="Property 2" 
                             fill 
                             style={{ objectFit: 'cover' }}
                             quality={95}
-                            priority
-                        />
+          priority
+        />
                     </div>
                 </div>
                 
                 {/* Mobile Hero Image */}
                 <div className="lg:hidden relative h-64 sm:h-80 mx-auto max-w-sm">
                     <div className="w-full h-full bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <Image
+            <Image
                             src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=100&w=4000&auto=format&fit=crop&ar=4:3" 
                             alt="Property showcase" 
                             fill 
@@ -231,42 +224,36 @@ const HeroSection = () => {
 };
 
 const Footer = () => (
-     <footer className="w-full bg-[--footer-bg] text-[--footer-text] py-12 sm:py-16 px-4 sm:px-6">
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+     <footer className="w-full bg-black text-white py-16 px-4">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">GharBari</h3>
-                <p className="text-sm">Your trusted partner in finding the perfect property.</p>
+                <p className="text-sm text-white">Your trusted partner in finding the perfect property.</p>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Quick Links</h3>
                 <ul className="space-y-2 text-sm">
-                    <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
-                    <li><a href="/explore" className="hover:text-white transition-colors">Explore Properties</a></li>
+                    <li><a href="/about" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">About Us</a></li>
+                    <li><a href="/contact" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Contact</a></li>
+                    <li><a href="/explore" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Explore Properties</a></li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Contact Info</h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2 text-sm text-white">
                     <li>Dhaka, Bangladesh</li>
                     <li>contact@gharbari.com</li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Newsletter</h3>
-                <div className="flex flex-col sm:flex-row gap-2">
-                    <input 
-                        type="email" 
-                        placeholder="Your email" 
-                        className="p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-sm"
-                    />
-                    <button className="p-3 rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-[--color-secondary-accent] text-[--color-text-neutral] font-bold text-sm whitespace-nowrap">
-                        Sign Up
-                    </button>
+                <div className="flex">
+                    <input type="email" placeholder="Your email" className="p-2 rounded-l-md w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-white placeholder-white"/>
+                    <button className="p-2 rounded-r-md bg-[--color-secondary-accent] text-white font-bold">Sign Up</button>
                 </div>
             </div>
         </div>
-        <div className="mt-12 sm:mt-16 border-t border-white/20 pt-8 text-center text-sm">
+        <div className="mt-16 border-t border-white/20 pt-8 text-center text-sm text-white">
             <p>&copy; GharBari 2025. All rights reserved.</p>
         </div>
     </footer>

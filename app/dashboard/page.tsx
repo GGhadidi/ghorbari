@@ -52,7 +52,7 @@ const Header = () => (
       <div className="container mx-auto px-4 sm:px-6 py-4 bg-black rounded-full shadow-2xl ring-1 ring-white/10">
         <div className="flex justify-between items-center">
           <a href="/" className="flex items-center space-x-2">
-            <img src="/logo.png" alt="GharBari logo" className="navbar-logo w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+            <img src="/logo-main.png" alt="GharBari logo" className="navbar-logo w-8 h-8 sm:w-10 sm:h-10 object-contain" />
             <span className="text-xl sm:text-2xl font-bold text-white font-serif">GharBari</span>
           </a>
           <nav className="hidden lg:flex items-center gap-10 xl:gap-14">
@@ -60,7 +60,7 @@ const Header = () => (
             <a href="/explore" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Explore</a>
             <a href="/list-property" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">List Property</a>
             <a href="/about" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">About</a>
-            <a href="#" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Contact</a>
+            <a href="/contact" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Contact</a>
           </nav>
           <div className="flex items-center space-x-3 sm:space-x-4">
             <a href="/login" className="navbar-link hidden sm:block text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 font-medium text-sm lg:text-base">Login</a>
@@ -71,23 +71,23 @@ const Header = () => (
 );
 
 const Footer = () => (
-     <footer className="w-full bg-[--footer-bg] text-[--footer-text] py-16 px-4">
+     <footer className="w-full bg-black text-white py-16 px-4">
         <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">GharBari</h3>
-                <p className="text-sm">Your trusted partner in finding the perfect property.</p>
+                <p className="text-sm text-white">Your trusted partner in finding the perfect property.</p>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Quick Links</h3>
                 <ul className="space-y-2 text-sm">
-                    <li><a href="/about" className="hover:text-white">About Us</a></li>
-                    <li><a href="/contact" className="hover:text-white">Contact</a></li>
-                    <li><a href="/explore" className="hover:text-white">Explore Properties</a></li>
+                    <li><a href="/about" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">About Us</a></li>
+                    <li><a href="/contact" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Contact</a></li>
+                    <li><a href="/explore" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Explore Properties</a></li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Contact Info</h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2 text-sm text-white">
                     <li>Dhaka, Bangladesh</li>
                     <li>contact@gharbari.com</li>
                 </ul>
@@ -95,12 +95,12 @@ const Footer = () => (
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Newsletter</h3>
                 <div className="flex">
-                    <input type="email" placeholder="Your email" className="p-2 rounded-l-md w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent]"/>
-                    <button className="p-2 rounded-r-md bg-[--color-secondary-accent] text-[--color-text-neutral] font-bold">Sign Up</button>
+                    <input type="email" placeholder="Your email" className="p-2 rounded-l-md w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-white placeholder-white"/>
+                    <button className="p-2 rounded-r-md bg-[--color-secondary-accent] text-white font-bold">Sign Up</button>
                 </div>
             </div>
         </div>
-        <div className="mt-16 border-t border-white/20 pt-8 text-center text-sm">
+        <div className="mt-16 border-t border-white/20 pt-8 text-center text-sm text-white">
             <p>&copy; GharBari 2025. All rights reserved.</p>
         </div>
     </footer>
@@ -149,7 +149,7 @@ export default function Dashboard() {
               {listings.map(listing => (
                 <div key={listing.id} className="bg-[--bg-card] rounded-2xl shadow-lg overflow-hidden border border-[--border-main] hover:shadow-xl transition-shadow duration-300">
                   <div className="w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                     <img src="/logo.png" alt="GharBari logo" className="w-12 h-12 object-contain" />
+                     <img src="/logo-main.png" alt="GharBari logo" className="w-12 h-12 object-contain" />
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-[--text-main] mb-2">{listing.title}</h3>

@@ -1,14 +1,9 @@
 'use client';
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 // --- Reusable Icon Components ---
-const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-    </svg>
-);
-
 const HeartIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
@@ -36,7 +31,7 @@ const FilterIcon = (props: React.SVGProps<SVGSVGElement>) => (
 // --- Reusable Button Component ---
 const Button = ({ children, className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }) => (
     <button
-        className={`btn btn-primary ${className}`}
+        className={`rounded-full bg-black text-white font-bold py-3 px-6 hover:bg-gray-800 transition-all duration-300 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed ${className}`}
         {...props}
     >
         {children}
@@ -76,25 +71,23 @@ const Header = () => {
     return (
         <>
             <header className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl transition-transform duration-1000 ease-in-out ${show ? 'translate-y-0' : '-translate-y-32'}`}>
-                <div className="container mx-auto px-4 sm:px-6 py-4 bg-black rounded-full shadow-2xl ring-1 ring-white/10">
+                <div className="container mx-auto px-4 sm:px-6 py-4 bg-black rounded-full">
                     <div className="flex justify-between items-center">
                         <a href="/" className="flex items-center space-x-2">
-                            <img src="/logo.png" alt="GharBari logo" className="navbar-logo w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+                            <img src="/logo-main.png" alt="GharBari logo" className="navbar-logo w-8 h-8 sm:w-10 sm:h-10 object-contain" />
                             <span className="text-xl sm:text-2xl font-bold text-white font-serif">GharBari</span>
                         </a>
                         
                         {/* Desktop Navigation */}
                         <nav className="hidden lg:flex items-center gap-10 xl:gap-14">
-                            <a href="/" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Home</a>
-                            <a href="/explore" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Explore</a>
-                            <a href="/list-property" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">List Property</a>
-                            <a href="/about" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">About</a>
-                            <a href="#" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Contact</a>
+                            <Link href="/" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Home</Link>
+                            <Link href="/explore" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Explore</Link>
+                            <Link href="/list-property" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">List Property</Link>
+                            <Link href="/about" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">About</Link>
+                            <Link href="/contact" className="navbar-link text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 text-sm xl:text-base">Contact</Link>
                         </nav>
                         
                         <div className="flex items-center space-x-3 sm:space-x-4">
-                            <a href="/login" className="navbar-link hidden sm:block text-gray-200 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)] transition-all duration-500 font-medium text-sm lg:text-base">Login</a>
-                            
                             {/* Mobile Menu Button */}
                             <button
                                 onClick={toggleMobileMenu}
@@ -126,19 +119,13 @@ const Header = () => {
                         
                         <nav className="flex-1 p-6">
                             <div className="space-y-6">
-                                <a href="/" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Home</a>
-                                <a href="/explore" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Explore</a>
-                                <a href="/list-property" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">List Property</a>
-                                <a href="/about" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">About</a>
-                                <a href="#" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Contact</a>
+                                <Link href="/" onClick={closeMobileMenu} className="block text-white hover:text-[#2C7865] transition-colors text-lg py-3 border-b border-white/10">Home</Link>
+                                <Link href="/explore" onClick={closeMobileMenu} className="block text-white hover:text-[#2C7865] transition-colors text-lg py-3 border-b border-white/10">Explore</Link>
+                                <Link href="/list-property" onClick={closeMobileMenu} className="block text-white hover:text-[#2C7865] transition-colors text-lg py-3 border-b border-white/10">List Property</Link>
+                                <Link href="/about" onClick={closeMobileMenu} className="block text-white hover:text-[#2C7865] transition-colors text-lg py-3 border-b border-white/10">About</Link>
+                                <Link href="/contact" onClick={closeMobileMenu} className="block text-white hover:text-[#2C7865] transition-colors text-lg py-3 border-b border-white/10">Contact</Link>
                             </div>
                         </nav>
-                        
-                        <div className="p-6 border-t border-white/20">
-                            <a href="/login" onClick={closeMobileMenu} className="btn btn-primary w-full justify-center">
-                                Login
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -147,42 +134,36 @@ const Header = () => {
 };
 
 const Footer = () => (
-     <footer className="w-full bg-black text-white py-12 sm:py-16 px-4 sm:px-6">
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+     <footer className="w-full bg-black text-white py-16 px-4">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">GharBari</h3>
-                <p className="text-sm text-gray-400">Your trusted partner in finding the perfect property.</p>
+                <p className="text-sm text-white">Your trusted partner in finding the perfect property.</p>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Quick Links</h3>
                 <ul className="space-y-2 text-sm">
-                    <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
-                    <li><a href="/explore" className="hover:text-white transition-colors">Explore Properties</a></li>
+                    <li><a href="/about" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">About Us</a></li>
+                    <li><a href="/contact" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Contact</a></li>
+                    <li><a href="/explore" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Explore Properties</a></li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Contact Info</h3>
-                <ul className="space-y-2 text-sm text-gray-400">
+                <ul className="space-y-2 text-sm text-white">
                     <li>Dhaka, Bangladesh</li>
                     <li>contact@gharbari.com</li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Newsletter</h3>
-                <div className="flex flex-col sm:flex-row gap-2">
-                    <input 
-                        type="email" 
-                        placeholder="Your email" 
-                        className="p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none w-full bg-gray-800 border-gray-700 focus:ring-2 focus:ring-teal-500 text-sm"
-                    />
-                    <button className="p-3 rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-teal-600 text-white font-bold text-sm whitespace-nowrap">
-                        Sign Up
-                    </button>
+                <div className="flex">
+                    <input type="email" placeholder="Your email" className="p-2 rounded-l-md w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-white placeholder-white"/>
+                    <button className="p-2 rounded-r-md bg-[--color-secondary-accent] text-white font-bold">Sign Up</button>
                 </div>
             </div>
         </div>
-        <div className="mt-12 sm:mt-16 border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+        <div className="mt-16 border-t border-white/20 pt-8 text-center text-sm text-white">
             <p>&copy; GharBari 2025. All rights reserved.</p>
         </div>
     </footer>
@@ -290,38 +271,11 @@ const locations = {
 
 // --- Page Components ---
 
-const FilterSidebar = ({ onFilterChange, filters, isMobileOpen, onMobileToggle, onPropertyTypeChange }: {
+const FilterSidebar = ({ onFilterChange, filters, onPropertyTypeChange }: {
     onFilterChange: (newFilterValues: Partial<{ division: string; district: string; upazila: string; price: number; area: number; bedrooms: string; bathrooms: string; furnished: boolean; verified: boolean; propertyType: string[]; rooms?: string; }>) => void;
     filters: { division: string; district: string; upazila: string; price: number; area: number; bedrooms: string; bathrooms: string; furnished: boolean; verified: boolean; propertyType: string[]; rooms?: string; };
-    isMobileOpen?: boolean;
-    onMobileToggle?: () => void;
     onPropertyTypeChange: (type: string) => void;
 }) => {
-    const [districts, setDistricts] = useState<string[]>([]);
-    const [upazilas, setUpazilas] = useState<string[]>([]);
-
-    // Update districts when division changes
-    useEffect(() => {
-        if (filters.division) {
-            const divisionData = locations[filters.division as keyof typeof locations];
-            const newDistricts = Object.keys(divisionData);
-            setDistricts(newDistricts);
-        } else {
-            setDistricts([]);
-        }
-    }, [filters.division]);
-
-    // Update upazilas when district changes
-    useEffect(() => {
-        if (filters.division && filters.district) {
-            const divisionData = locations[filters.division as keyof typeof locations];
-            const newUpazilas = divisionData[filters.district as keyof typeof divisionData];
-            setUpazilas(newUpazilas);
-        } else {
-            setUpazilas([]);
-        }
-    }, [filters.division, filters.district]);
-
     const handleDivisionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const division = e.target.value;
         console.log('Division changed to:', division);
@@ -337,102 +291,291 @@ const FilterSidebar = ({ onFilterChange, filters, isMobileOpen, onMobileToggle, 
     };
 
     const filterContent = (
-        <div className="space-y-8">
+        <div className="space-y-8 p-4 w-full max-w-xs">
             <h3 className="text-2xl font-bold font-serif text-gray-900 mb-2">Filters</h3>
             {/* Location Filter */}
             <div className="space-y-2">
                 <label className="text-base font-semibold block text-gray-800">Location</label>
+                {/* Division Select */}
                 <select 
                     onChange={handleDivisionChange} 
                     value={filters.division} 
-                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white cursor-pointer appearance-none text-base"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:border-none focus:ring-0 focus:shadow-none bg-white cursor-pointer appearance-none text-base"
                 >
-                    <option value="">All Locations</option>
+                    <option value="">All Divisions</option>
                     {Object.keys(locations).map(div => <option key={div} value={div}>{div}</option>)}
                 </select>
+                {/* District Select */}
+                {filters.division && (
+                  <select
+                    onChange={e => onFilterChange({ district: e.target.value, upazila: '' })}
+                    value={filters.district}
+                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:border-none focus:ring-0 focus:shadow-none bg-white cursor-pointer appearance-none text-base mt-2"
+                  >
+                    <option value="">All Districts</option>
+                    {Object.keys(locations[filters.division as keyof typeof locations] || {}).map(district => (
+                      <option key={district} value={district}>{district}</option>
+                    ))}
+                  </select>
+                )}
+                {/* Upazila Select */}
+                {filters.division && filters.district && (
+                  <select
+                    onChange={e => onFilterChange({ upazila: e.target.value })}
+                    value={filters.upazila}
+                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:border-none focus:ring-0 focus:shadow-none bg-white cursor-pointer appearance-none text-base mt-2"
+                  >
+                    <option value="">All Upazilas</option>
+                    {(((locations as any)[filters.division]?.[filters.district] || []) as string[]).map((upazila: string) => (
+                      <option key={upazila} value={upazila}>{upazila}</option>
+                    ))}
+                  </select>
+                )}
+            </div>
+            {/* Property Type */}
+            <div className="space-y-2">
+                <label className="text-base font-semibold block text-gray-800">Property Type</label>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    {/* First row: House, Apartment */}
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={filters.propertyType.includes('House')}
+                            onChange={() => handlePropertyTypeChange('House')}
+                            className="w-2 h-2 rounded-md border-gray-300 text-[#2C7865] focus:outline-none focus:border-gray-300"
+                        />
+                        <span className="text-base text-gray-700">House</span>
+                    </label>
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={filters.propertyType.includes('Apartment')}
+                            onChange={() => handlePropertyTypeChange('Apartment')}
+                            className="w-2 h-2 rounded-md border-gray-300 text-[#2C7865] focus:outline-none focus:border-gray-300"
+                        />
+                        <span className="text-base text-gray-700">Apartment</span>
+                    </label>
+                    {/* Second row: Office, Shop */}
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={filters.propertyType.includes('Office')}
+                            onChange={() => handlePropertyTypeChange('Office')}
+                            className="w-2 h-2 rounded-md border-gray-300 text-[#2C7865] focus:outline-none focus:border-gray-300"
+                        />
+                        <span className="text-base text-gray-700">Office</span>
+                    </label>
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={filters.propertyType.includes('Shop')}
+                            onChange={() => handlePropertyTypeChange('Shop')}
+                            className="w-2 h-2 rounded-md border-gray-300 text-[#2C7865] focus:outline-none focus:border-gray-300"
+                        />
+                        <span className="text-base text-gray-700">Shop</span>
+                    </label>
+                    {/* Third row: Bachelor Mess, left-aligned */}
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            checked={filters.propertyType.includes('Bachelor Mess')}
+                            onChange={() => handlePropertyTypeChange('Bachelor Mess')}
+                            className="w-2 h-2 rounded-md border-gray-300 text-[#2C7865] focus:outline-none focus:border-gray-300"
+                        />
+                        <span className="text-base text-gray-700">Bachelor Mess</span>
+                    </label>
+                </div>
             </div>
             {/* Price Range */}
             <div className="space-y-2">
-                <label htmlFor="priceRange" className="text-base font-semibold text-gray-800">Price Range</label>
-                <input 
-                    id="priceRange"
-                    type="range" 
-                    min="20000" 
-                    max="150000" 
-                    step="1000"
-                    value={filters.price}
-                    onChange={(e) => onFilterChange({ price: parseInt(e.target.value, 10) })}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600" 
-                />
-                <div className="flex justify-between text-xs text-gray-700">
-                    <span>20k</span>
-                    <span>150k+</span>
+                <label className="text-base font-semibold block text-gray-800">Price Range</label>
+                <div className="relative w-full">
+                    <input 
+                        type="range" min="20000" max="150000" step="1000"
+                        value={filters.price}
+                        onChange={e => onFilterChange({ price: parseInt(e.target.value, 10) })}
+                        className="w-full h-[3px] bg-gray-300 appearance-none cursor-pointer focus:outline-none border-none outline-none"
+                        style={{
+                          accentColor: '#2C7865',
+                        }}
+                    />
+                    <style jsx>{`
+                        input[type='range']::-webkit-slider-thumb {
+                          -webkit-appearance: none;
+                          height: 22px;
+                          width: 22px;
+                          border-radius: 50%;
+                          background: #2C7865;
+                          box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+                          border: none !important;
+                          outline: none !important;
+                          margin-top: -9.5px;
+                        }
+                        input[type='range']::-moz-range-thumb {
+                          height: 22px;
+                          width: 22px;
+                          border-radius: 50%;
+                          background: #2C7865;
+                          box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+                          border: none !important;
+                          outline: none !important;
+                        }
+                        input[type='range']::-ms-thumb {
+                          height: 22px;
+                          width: 22px;
+                          border-radius: 50%;
+                          background: #2C7865;
+                          box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+                          border: none !important;
+                          outline: none !important;
+                        }
+                        input[type='range']::-webkit-slider-runnable-track {
+                          height: 3px;
+                          border-radius: 2px;
+                          background: #d1d5db;
+                          border: none !important;
+                        }
+                        input[type='range']:focus {
+                          outline: none !important;
+                          border: none !important;
+                        }
+                        input[type='range']::-ms-fill-lower {
+                          background: #d1d5db;
+                          border: none !important;
+                        }
+                        input[type='range']::-ms-fill-upper {
+                          background: #d1d5db;
+                          border: none !important;
+                        }
+                        input[type='range'] {
+                          background: transparent;
+                          border: none !important;
+                          outline: none !important;
+                        }
+                    `}</style>
+                    <div className="flex justify-between text-xs text-gray-700 mt-1">
+                        <span>৳{filters.price.toLocaleString()}</span>
+                        <span>৳150,000+</span>
+                    </div>
                 </div>
             </div>
             {/* Area */}
             <div className="space-y-2">
-                <label htmlFor="areaRange" className="text-base font-semibold text-gray-800">Area (sqft)</label>
-                <input 
-                    id="areaRange"
-                    type="range" 
-                    min="500" 
-                    max="5000" 
-                    step="50"
-                    value={filters.area}
-                    onChange={(e) => onFilterChange({ area: parseInt(e.target.value, 10) })}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600" 
-                />
-                <div className="flex justify-between text-xs text-gray-700">
-                    <span>500</span>
-                    <span>5000+</span>
+                <label className="text-base font-semibold block text-gray-800">Area (sqft)</label>
+                <div className="relative w-full">
+                    <input 
+                        type="range" min="500" max="5000" step="50"
+                        value={filters.area}
+                        onChange={e => onFilterChange({ area: parseInt(e.target.value, 10) })}
+                        className="w-full h-[3px] bg-gray-300 appearance-none cursor-pointer focus:outline-none border-none outline-none"
+                        style={{
+                          accentColor: '#2C7865',
+                        }}
+                    />
+                    <style jsx>{`
+                        input[type='range']::-webkit-slider-thumb {
+                          -webkit-appearance: none;
+                          height: 22px;
+                          width: 22px;
+                          border-radius: 50%;
+                          background: #2C7865;
+                          box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+                          border: none !important;
+                          outline: none !important;
+                          margin-top: -9.5px;
+                        }
+                        input[type='range']::-moz-range-thumb {
+                          height: 22px;
+                          width: 22px;
+                          border-radius: 50%;
+                          background: #2C7865;
+                          box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+                          border: none !important;
+                          outline: none !important;
+                        }
+                        input[type='range']::-ms-thumb {
+                          height: 22px;
+                          width: 22px;
+                          border-radius: 50%;
+                          background: #2C7865;
+                          box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+                          border: none !important;
+                          outline: none !important;
+                        }
+                        input[type='range']::-webkit-slider-runnable-track {
+                          height: 3px;
+                          border-radius: 2px;
+                          background: #d1d5db;
+                          border: none !important;
+                        }
+                        input[type='range']:focus {
+                          outline: none !important;
+                          border: none !important;
+                        }
+                        input[type='range']::-ms-fill-lower {
+                          background: #d1d5db;
+                          border: none !important;
+                        }
+                        input[type='range']::-ms-fill-upper {
+                          background: #d1d5db;
+                          border: none !important;
+                        }
+                        input[type='range'] {
+                          background: transparent;
+                          border: none !important;
+                          outline: none !important;
+                        }
+                    `}</style>
+                    <div className="flex justify-between text-xs text-gray-700 mt-1">
+                        <span>{filters.area} sqft</span>
+                        <span>5,000 sqft+</span>
+                    </div>
                 </div>
             </div>
             {/* Beds & Baths */}
             <div className="flex gap-4">
-                <div className="w-1/2">
+                <div className="w-1/3">
                     <label className="text-base font-semibold block text-gray-800 mb-1">Beds</label>
                     <select 
                         value={filters.bedrooms}
-                        onChange={(e) => onFilterChange({ bedrooms: e.target.value })}
-                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white cursor-pointer appearance-none text-base"
+                        onChange={e => onFilterChange({ bedrooms: e.target.value })}
+                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none bg-white cursor-pointer appearance-none text-base"
                     >
                         <option value="">Any</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="3+">3+</option>
+                        <option value="4+">4+</option>
                     </select>
                 </div>
-                <div className="w-1/2">
+                <div className="w-1/3">
                     <label className="text-base font-semibold block text-gray-800 mb-1">Baths</label>
                     <select 
                         value={filters.bathrooms}
-                        onChange={(e) => onFilterChange({ bathrooms: e.target.value })}
-                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white cursor-pointer appearance-none text-base"
+                        onChange={e => onFilterChange({ bathrooms: e.target.value })}
+                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none bg-white cursor-pointer appearance-none text-base"
                     >
                         <option value="">Any</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="3+">3+</option>
+                        <option value="4+">4+</option>
                     </select>
                 </div>
-            </div>
-            {/* Rooms */}
-            <div className="space-y-2">
-                <label className="text-base font-semibold block text-gray-800">Rooms</label>
-                <select
-                    value={filters.rooms}
-                    onChange={e => onFilterChange({ rooms: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white cursor-pointer appearance-none text-base"
-                >
-                    <option value="">Any</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5+">5+</option>
-                </select>
+                <div className="w-1/3">
+                    <label className="text-base font-semibold block text-gray-800 mb-1">Rooms</label>
+                    <select 
+                        value={filters.rooms}
+                        onChange={e => onFilterChange({ rooms: e.target.value })}
+                        className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:outline-none bg-white cursor-pointer appearance-none text-base"
+                    >
+                        <option value="">Any</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4+">4+</option>
+                    </select>
+                </div>
             </div>
             {/* Toggles */}
             <div className="space-y-4">
@@ -441,45 +584,27 @@ const FilterSidebar = ({ onFilterChange, filters, isMobileOpen, onMobileToggle, 
                     <input 
                         type="checkbox" 
                         checked={filters.furnished}
-                        onChange={(e) => onFilterChange({ furnished: e.target.checked })}
+                        onChange={e => onFilterChange({ furnished: e.target.checked })}
                         className="sr-only peer" 
                     />
-                    <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                    <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#2C7865]"></div>
                 </label>
                 <label className="flex items-center justify-between cursor-pointer">
                     <span className="text-base font-semibold text-gray-800">Verified Only</span>
                     <input 
                         type="checkbox" 
                         checked={filters.verified}
-                        onChange={(e) => onFilterChange({ verified: e.target.checked })}
+                        onChange={e => onFilterChange({ verified: e.target.checked })}
                         className="sr-only peer" 
                     />
-                    <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                    <div className="relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#2C7865]"></div>
                 </label>
             </div>
         </div>
     );
-
-    // Mobile overlay version
-    if (onMobileToggle) {
-        return (
-            <div className={`lg:hidden fixed inset-0 z-50 transition-opacity duration-300 ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-                <div className="absolute inset-0 bg-black/50" onClick={onMobileToggle}></div>
-                <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : 'translate-x-full'} overflow-y-auto`}>
-                    <div className="p-4 sm:p-6">
-                        {filterContent}
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    // Desktop sidebar version
     return (
-        <div className="hidden lg:block w-80 p-6 bg-white rounded-2xl shadow-xl border border-gray-200 h-fit sticky top-28 z-30">
-            <div className="space-y-8">
-                {filterContent}
-            </div>
+        <div className="w-full lg:w-80 p-0 bg-white rounded-2xl shadow-lg h-fit mb-6 lg:mb-0 mt-0">
+            {filterContent}
         </div>
     );
 };
@@ -491,10 +616,10 @@ const PropertyCard = ({ listing }: { listing: typeof allListings[0] }) => (
             <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm p-2 rounded-full cursor-pointer hover:bg-red-100 transition-colors duration-500">
                 <HeartIcon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 hover:text-red-500 transition-colors duration-500" />
             </div>
-             {listing.verified && <div className="absolute top-3 left-3 bg-teal-500 text-white text-xs font-bold px-2 py-1 rounded-full">VERIFIED</div>}
+             {listing.verified && <div className="absolute top-3 left-3 bg-[#2C7865] text-white text-xs font-bold px-2 py-1 rounded-full">VERIFIED</div>}
         </div>
         <div className="p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold font-serif text-gray-800 mb-2 line-clamp-2">{listing.title}</h3>
+            <h3 className="text-lg sm:text-xl font-bold font-serif text-white mb-2 line-clamp-2">{listing.title}</h3>
             <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">{listing.location}</p>
             <div className="flex justify-between items-center mb-3 sm:mb-4 text-sm sm:text-base text-gray-700">
                 <span>{listing.bedrooms} Beds</span>
@@ -502,8 +627,8 @@ const PropertyCard = ({ listing }: { listing: typeof allListings[0] }) => (
                 <span>{listing.area} sqft</span>
             </div>
             <div className="flex justify-between items-center">
-                <p className="text-xl sm:text-2xl font-bold text-teal-600">৳{listing.price.toLocaleString()}</p>
-                <a href="#" className="text-sm font-bold text-teal-600 hover:text-teal-700">View Details</a>
+                <p className="text-xl sm:text-2xl font-bold text-[#2C7865]">৳{listing.price.toLocaleString()}</p>
+                <Link href="#" className="text-sm font-bold text-[#2C7865] hover:text-[#2C7865] flex items-center">View Details</Link>
             </div>
         </div>
     </div>
@@ -514,20 +639,20 @@ const Pagination = () => {
     const totalPages = 5;
 
     return (
-        <div className="flex justify-center items-center gap-1 sm:gap-2 mt-8 sm:mt-12">
-            <Button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="py-2 px-3 sm:px-4 !rounded-lg bg-white !text-gray-700 border border-gray-300 hover:!bg-gray-100 text-sm">
+        <div className="w-full flex justify-center items-center gap-1 sm:gap-2 mt-8 sm:mt-12">
+            <Button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="rounded-full bg-teal-600 text-white font-bold py-3 px-6 hover:bg-teal-700 transition-transform duration-300 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed">
                 Previous
             </Button>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
                 <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg transition-colors duration-500 text-sm sm:text-base ${currentPage === page ? 'bg-teal-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'}`}
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg transition-colors duration-500 text-sm sm:text-base ${currentPage === page ? 'bg-[#2C7865] text-black' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-100'}`}
                 >
                     {page}
                 </button>
             ))}
-            <Button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="py-2 px-3 sm:px-4 !rounded-lg bg-white !text-gray-700 border border-gray-300 hover:!bg-gray-100 text-sm">
+            <Button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="rounded-full bg-teal-600 text-white font-bold py-3 px-6 hover:bg-teal-700 transition-transform duration-300 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed">
                 Next
             </Button>
         </div>
@@ -550,7 +675,6 @@ export default function ExplorePage() {
       propertyType: [] as string[],
       rooms: ''
   });
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const handleFilterChange = (newFilterValues: Partial<typeof filters>) => {
       setFilters(prev => ({...prev, ...newFilterValues}));
@@ -581,15 +705,15 @@ export default function ExplorePage() {
         // Bedrooms filter
         if (bedrooms && bedrooms !== 'Any') {
             const bedFilter = parseInt(bedrooms);
-            if (bedrooms === '3+' && listing.bedrooms < 3) return false;
-            if (bedrooms !== '3+' && listing.bedrooms !== bedFilter) return false;
+            if (bedrooms === '4+' && listing.bedrooms < 4) return false;
+            if (bedrooms !== '4+' && listing.bedrooms !== bedFilter) return false;
         }
         
         // Bathrooms filter
         if (bathrooms && bathrooms !== 'Any') {
             const bathFilter = parseInt(bathrooms);
-            if (bathrooms === '3+' && listing.bathrooms < 3) return false;
-            if (bathrooms !== '3+' && listing.bathrooms !== bathFilter) return false;
+            if (bathrooms === '4+' && listing.bathrooms < 4) return false;
+            if (bathrooms !== '4+' && listing.bathrooms !== bathFilter) return false;
         }
         
         // Property type filter
@@ -606,36 +730,19 @@ export default function ExplorePage() {
   }, [filters]);
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white min-h-screen flex flex-col">
       <Header />
-      <main className="pt-32 min-h-[60vh] flex flex-col bg-gray-50">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6">
+      <main className="pt-32 min-h-[60vh] flex-1 flex flex-col">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 flex-1 flex flex-col">
             <div className="text-center mb-12 sm:mb-16">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif text-gray-900">Explore Properties</h1>
                 <p className="text-base sm:text-lg text-gray-700 mt-2">Find the perfect space that fits your needs.</p>
-            </div>
-            {/* Mobile Filter Toggle */}
-            <div className="lg:hidden mb-6">
-                <button
-                    onClick={() => setMobileFiltersOpen(true)}
-                    className="w-full flex items-center justify-center gap-2 p-4 bg-white rounded-xl shadow-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
-                >
-                    <FilterIcon className="w-5 h-5" />
-                    <span className="font-semibold">Filters</span>
-                    <span className="text-sm text-gray-500">({Object.values(filters).filter(v => {
-                        if (Array.isArray(v)) return v.length > 0;
-                        if (typeof v === 'boolean') return v;
-                        return v !== '' && v !== 150000 && v !== 5000;
-                    }).length} active)</span>
-                </button>
             </div>
             {/* Sidebar and Listings Row */}
             <div className="flex flex-row items-start gap-10 xl:gap-16 w-full">
                 <FilterSidebar 
                     onFilterChange={handleFilterChange} 
                     filters={filters}
-                    isMobileOpen={mobileFiltersOpen}
-                    onMobileToggle={() => setMobileFiltersOpen(false)}
                     onPropertyTypeChange={handlePropertyTypeChange}
                 />
                 <div className="w-full lg:w-3/4">
@@ -644,8 +751,10 @@ export default function ExplorePage() {
                             <PropertyCard key={listing.id} listing={listing} />
                         ))}
                     </div>
-                    <Pagination />
                 </div>
+            </div>
+            <div className="flex w-full justify-center mt-8 sm:mt-12">
+                <Pagination />
             </div>
         </div>
       </main>

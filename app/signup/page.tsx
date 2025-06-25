@@ -60,8 +60,6 @@ const Header = () => {
                     </nav>
                     
                     <div className="flex items-center gap-3 sm:gap-4">
-                        <a href="/login" className="hidden sm:block text-sm font-medium text-white hover:text-gray-300 transition-colors">Login</a>
-                        
                         {/* Mobile Menu Button */}
                         <button
                             onClick={toggleMobileMenu}
@@ -99,12 +97,6 @@ const Header = () => {
                                 <a href="#" onClick={closeMobileMenu} className="block text-white hover:text-[--color-secondary-accent] transition-colors text-lg py-3 border-b border-white/10">Contact</a>
                             </div>
                         </nav>
-                        
-                        <div className="p-6 border-t border-white/20">
-                            <a href="/login" onClick={closeMobileMenu} className="btn btn-primary w-full justify-center">
-                                Login
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -113,42 +105,36 @@ const Header = () => {
 };
 
 const Footer = () => (
-     <footer className="w-full bg-[--footer-bg] text-[--footer-text] py-12 sm:py-16 px-4 sm:px-6">
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+     <footer className="w-full bg-black text-white py-16 px-4">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">GharBari</h3>
-                <p className="text-sm">Your trusted partner in finding the perfect property.</p>
+                <p className="text-sm text-white">Your trusted partner in finding the perfect property.</p>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Quick Links</h3>
                 <ul className="space-y-2 text-sm">
-                    <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
-                    <li><a href="/explore" className="hover:text-white transition-colors">Explore Properties</a></li>
+                    <li><a href="/about" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">About Us</a></li>
+                    <li><a href="/contact" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Contact</a></li>
+                    <li><a href="/explore" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Explore Properties</a></li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Contact Info</h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2 text-sm text-white">
                     <li>Dhaka, Bangladesh</li>
                     <li>contact@gharbari.com</li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Newsletter</h3>
-                <div className="flex flex-col sm:flex-row gap-2">
-                    <input 
-                        type="email" 
-                        placeholder="Your email" 
-                        className="p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-sm"
-                    />
-                    <button className="p-3 rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-[--color-secondary-accent] text-[--color-text-neutral] font-bold text-sm whitespace-nowrap">
-                        Sign Up
-                    </button>
+                <div className="flex">
+                    <input type="email" placeholder="Your email" className="p-2 rounded-l-md w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-white placeholder-white"/>
+                    <button className="p-2 rounded-r-md bg-[--color-secondary-accent] text-white font-bold">Sign Up</button>
                 </div>
             </div>
         </div>
-        <div className="mt-12 sm:mt-16 border-t border-white/20 pt-8 text-center text-sm">
+        <div className="mt-16 border-t border-white/20 pt-8 text-center text-sm text-white">
             <p>&copy; GharBari 2025. All rights reserved.</p>
         </div>
     </footer>

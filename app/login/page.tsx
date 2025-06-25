@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 // Reusable components from the design system
 const HouseIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -46,7 +48,7 @@ const Header = () => {
             <header className="fixed top-4 left-0 right-0 z-50 px-4">
                 <div className="container mx-auto max-w-7xl flex justify-between items-center p-3 sm:p-4 bg-black/80 backdrop-blur-md rounded-2xl shadow-lg border border-white/20">
                     <a href="/" className="flex items-center gap-2">
-                        <HouseIcon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                        <img src="/logo-main.png" alt="GharBari logo" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
                         <span className="font-bold text-xl sm:text-2xl font-serif text-white">GharBari</span>
                     </a>
                     
@@ -113,138 +115,85 @@ const Header = () => {
 };
 
 const Footer = () => (
-     <footer className="w-full bg-[--footer-bg] text-[--footer-text] py-12 sm:py-16 px-4 sm:px-6">
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+     <footer className="w-full bg-black text-white py-16 px-4">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">GharBari</h3>
-                <p className="text-sm">Your trusted partner in finding the perfect property.</p>
+                <p className="text-sm text-white">Your trusted partner in finding the perfect property.</p>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Quick Links</h3>
                 <ul className="space-y-2 text-sm">
-                    <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
-                    <li><a href="/explore" className="hover:text-white transition-colors">Explore Properties</a></li>
+                    <li><a href="/about" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">About Us</a></li>
+                    <li><a href="/contact" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Contact</a></li>
+                    <li><a href="/explore" className="text-white transition-all duration-500 hover:text-white hover:[text-shadow:0_0_5px_rgba(255,255,255,0.8),0_0_15px_rgba(255,255,255,0.6)]">Explore Properties</a></li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Contact Info</h3>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2 text-sm text-white">
                     <li>Dhaka, Bangladesh</li>
                     <li>contact@gharbari.com</li>
                 </ul>
             </div>
             <div>
                 <h3 className="text-lg font-bold font-serif mb-4 text-white">Newsletter</h3>
-                <div className="flex flex-col sm:flex-row gap-2">
-                    <input 
-                        type="email" 
-                        placeholder="Your email" 
-                        className="p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-sm"
-                    />
-                    <button className="p-3 rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-[--color-secondary-accent] text-[--color-text-neutral] font-bold text-sm whitespace-nowrap">
-                        Sign Up
-                    </button>
+                <div className="flex">
+                    <input type="email" placeholder="Your email" className="p-2 rounded-l-md w-full bg-white/20 border-0 focus:ring-2 focus:ring-[--color-secondary-accent] text-white placeholder-white"/>
+                    <button className="p-2 rounded-r-md bg-[--color-secondary-accent] text-white font-bold">Sign Up</button>
                 </div>
             </div>
         </div>
-        <div className="mt-12 sm:mt-16 border-t border-white/20 pt-8 text-center text-sm">
+        <div className="mt-16 border-t border-white/20 pt-8 text-center text-sm text-white">
             <p>&copy; GharBari 2025. All rights reserved.</p>
         </div>
     </footer>
 );
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Login attempt with:', { email, password });
-    // In a real app, you'd redirect to /dashboard on success
-    window.location.href = '/dashboard';
+export default function LoginPage() {
+  const router = useRouter();
+  useEffect(() => {
+    // If already authenticated, redirect to home
+    if (typeof window !== 'undefined' && localStorage.getItem('authenticated')) {
+      router.replace('/');
+    }
+  }, [router]);
+  const handleLogin = () => {
+    localStorage.setItem('authenticated', 'true');
+    localStorage.removeItem('guest');
+    router.replace('/');
   };
-
+  const handleSignup = () => {
+    router.push('/signup');
+  };
+  const handleGuest = () => {
+    localStorage.setItem('guest', 'true');
+    localStorage.removeItem('authenticated');
+    router.replace('/explore');
+  };
   return (
-    <>
-      <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[--bg-page] pt-20 px-4 sm:px-6">
-        <div className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-[--bg-card] rounded-2xl shadow-lg border border-[--border-main]">
-          <div className="text-center">
-            <HouseIcon className="w-10 h-10 sm:w-12 sm:h-12 text-[--color-primary-brand] mx-auto mb-4" />
-            <h1 className="text-2xl sm:text-3xl font-bold text-[--text-main] font-serif">Welcome back</h1>
-            <p className="text-sm sm:text-base text-[--color-text-secondary] mt-2">Sign in to your account</p>
-          </div>
-          
-          <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[--text-main] mb-2">
-                Email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 sm:px-4 py-3 sm:py-4 text-[--text-main] bg-[--bg-page] border border-[--border-main] rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[--color-primary-brand] focus:border-[--color-primary-brand] transition-colors text-sm sm:text-base"
-                placeholder="Enter your email"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-[--text-main] mb-2">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 sm:px-4 py-3 sm:py-4 text-[--text-main] bg-[--bg-page] border border-[--border-main] rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[--color-primary-brand] focus:border-[--color-primary-brand] transition-colors text-sm sm:text-base"
-                placeholder="Enter your password"
-              />
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-[--color-primary-brand] focus:ring-[--color-primary-brand] border-[--border-main] rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-[--color-text-secondary]">
-                  Remember me
-                </label>
-              </div>
-              <div className="text-sm">
-                <a href="#" className="font-medium text-[--color-primary-brand] hover:text-[--color-primary-brand-hover] transition-colors">
-                  Forgot password?
-                </a>
-              </div>
-            </div>
-            <div>
-              <Button type="submit" className="w-full">
-                Sign in
-              </Button>
-            </div>
-          </form>
-          
-          <div className="text-center">
-            <p className="text-sm text-[--color-text-secondary]">
-              Don't have an account?{' '}
-              <a href="/signup" className="font-medium text-[--color-primary-brand] hover:text-[--color-primary-brand-hover] transition-colors">
-                Sign up
-              </a>
-            </p>
-          </div>
-        </div>
+    <div className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden" style={{backgroundColor: 'white'}}>
+      {/* Black overlay over background image */}
+      <img src="/background image(landing page).png" alt="Elegant house background" className="absolute inset-0 w-full h-full object-cover z-0 opacity-40" style={{pointerEvents: 'none'}} />
+      <div className="absolute inset-0 w-full h-full bg-black z-10 opacity-30 pointer-events-none" />
+      {/* Top right logo */}
+      <div className="absolute top-6 right-8 z-20">
+        <img src="/logo-landingpage.png" alt="GharBari logo" className="w-20 h-20" />
       </div>
+      {/* Top section with title and description */}
+      <div className="w-full flex flex-col items-center pt-12 pb-8 z-30 relative mt-20">
+        <h1 className="text-5xl font-extrabold text-black mb-2 font-serif">GharBari</h1>
+        <p className="text-lg text-gray-700 mb-2 text-center max-w-xl">Your trusted partner in finding the perfect property. We provide tailored real estate solutions and personalized experiences to meet your unique needs and aspirations.</p>
+      </div>
+      {/* Centered card (blue box area) */}
+      <div className="bg-black rounded-2xl shadow-lg p-10 flex flex-col items-center z-30 relative mt-32">
+        <button onClick={handleLogin} className="w-64 py-3 mb-4 bg-white text-black font-semibold rounded-lg shadow hover:bg-gray-100 transition transform hover:scale-105 hover:shadow-2xl focus:scale-105 focus:shadow-2xl">Login</button>
+        <button onClick={handleSignup} className="w-64 py-3 mb-4 bg-white text-black font-semibold rounded-lg shadow hover:bg-gray-100 transition transform hover:scale-105 hover:shadow-2xl focus:scale-105 focus:shadow-2xl">Sign Up</button>
+        <button onClick={handleGuest} className="w-64 py-3 bg-gray-200 text-black font-semibold rounded-lg shadow hover:bg-gray-300 transition transform hover:scale-105 hover:shadow-2xl focus:scale-105 focus:shadow-2xl">Continue as Guest</button>
+      </div>
+      {/* Add spacer to push footer down */}
+      <div style={{ minHeight: '40vh' }} />
       <Footer />
-    </>
+    </div>
   );
 } 
